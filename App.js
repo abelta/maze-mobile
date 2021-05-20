@@ -1,21 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { Dimensions, View } from 'react-native'
+import { GridItem } from './components'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const { width, height } = Dimensions.get('screen')
+export const RATIO = height / width
+export const ITEMS_PER_ROW = 10
+export const ITEM_SIZE = width / ITEMS_PER_ROW
+export const ROWS = Math.round((RATIO * height) / ITEM_SIZE)
+export const TOTAL_ITEMS = ITEMS_PER_ROW * ROWS
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default () => (
+  <View
+    style={{
+      height: '100%',
+      width: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <GridItem />
+  </View>
+)
